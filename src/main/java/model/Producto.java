@@ -6,6 +6,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,8 +20,8 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idProducto;
 
-    @Column
-    private Double precio;
+    @Column(scale = 10, precision = 2)
+    private BigDecimal precio;
 
     @Column(length = 125, nullable = false)
     private String nombre;
@@ -30,6 +31,7 @@ public class Producto {
 
     @Column
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] imagen;
 
     // Relations
@@ -39,7 +41,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Double precio, String nombre, String descripcion, String imagen) {
+    public Producto(BigDecimal precio, String nombre, String descripcion, String imagen) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -54,11 +56,11 @@ public class Producto {
         this.idProducto = idProducto;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 

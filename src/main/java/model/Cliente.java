@@ -8,7 +8,7 @@ import java.util.Collection;
 @Table(name = "Cliente")
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer idCliente;
 
